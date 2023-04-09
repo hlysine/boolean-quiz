@@ -22,7 +22,7 @@ export default class WriteFormulaQuestion extends Question {
       useEffect(() => {
         try {
           if (formula) {
-            if (truthTable.verifyFormula(formula)) this.emitResult(true);
+            this.emitResult(truthTable.verifyFormula(formula));
           }
         } catch (ex) {}
       }, [truthTable, formula]);

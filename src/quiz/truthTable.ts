@@ -23,24 +23,45 @@ export class TruthTable {
   }
 
   public generateFormula(): Formula {
-    const children = this.rows
-      .filter(row => row.output)
-      .map(row => {
-        const inputs = Object.entries(row.inputs).map(([input, value]) => {
-          if (value) {
-            return new InputNode(input);
-          } else {
-            return new UnaryNode(NodeType.NOT, new InputNode(input));
-          }
+    const trueCount = this.rows.reduce((prev, curr) => prev + (curr.output ? 1 : 0), 0);
+    const falseCount = this.rows.reduce((prev, curr) => prev + (curr.output ? 0 : 1), 0);
+    let children: BinaryNode[];
+    const flipped = trueCount > falseCount;
+    if (flipped) {
+      children = this.rows
+        .filter(row => !row.output)
+        .map(row => {
+          const inputs = Object.entries(row.inputs).map(([input, value]) => {
+            if (value) {
+              return new InputNode(input);
+            } else {
+              return new UnaryNode(NodeType.NOT, new InputNode(input));
+            }
+          });
+          return new BinaryNode(NodeType.AND, inputs);
         });
-        return new BinaryNode(NodeType.AND, inputs);
-      });
+    } else {
+      children = this.rows
+        .filter(row => row.output)
+        .map(row => {
+          const inputs = Object.entries(row.inputs).map(([input, value]) => {
+            if (value) {
+              return new InputNode(input);
+            } else {
+              return new UnaryNode(NodeType.NOT, new InputNode(input));
+            }
+          });
+          return new BinaryNode(NodeType.AND, inputs);
+        });
+    }
     if (children.length === 0) {
       return new Formula(new ConstNode('false'));
     } else if (children.length === 1) {
-      return new Formula(children[0]);
+      if (flipped) return new Formula(new UnaryNode(NodeType.NOT, children[0]));
+      else return new Formula(children[0]);
     } else {
-      return new Formula(new BinaryNode(NodeType.OR, children));
+      if (flipped) return new Formula(new UnaryNode(NodeType.NOT, new BinaryNode(NodeType.OR, children)));
+      else return new Formula(new BinaryNode(NodeType.OR, children));
     }
   }
 

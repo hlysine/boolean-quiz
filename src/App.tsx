@@ -17,7 +17,7 @@ function App() {
   };
 
   const onResult = (_q: Question, correct: boolean) => {
-    if (correct) setCorrect(true);
+    setCorrect(correct);
   };
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function App() {
   }, [question]);
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="flex flex-col justify-center items-center min-h-screen">
       <div
         className={`rounded-md shadow-xl p-4 bg-slate-100 w-full m-4 mt-0 lg:w-[50%] ${
           isCorrect ? 'shadow-green-400' : ''
