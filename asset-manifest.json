@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/boolean-quiz/static/css/main.f325c1a8.css",
-    "main.js": "/boolean-quiz/static/js/main.ec4e106e.js",
+    "main.css": "/boolean-quiz/static/css/main.d8a19afa.css",
+    "main.js": "/boolean-quiz/static/js/main.59babff3.js",
     "static/js/787.d461c582.chunk.js": "/boolean-quiz/static/js/787.d461c582.chunk.js",
     "static/media/KaTeX_AMS-Regular.ttf": "/boolean-quiz/static/media/KaTeX_AMS-Regular.853be92419a6c3766b9a.ttf",
     "static/media/KaTeX_Main-Regular.ttf": "/boolean-quiz/static/media/KaTeX_Main-Regular.9eba1d77abcf2aa6e94e.ttf",
@@ -64,12 +64,12 @@
     "static/media/KaTeX_Size3-Regular.woff": "/boolean-quiz/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/boolean-quiz/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/boolean-quiz/index.html",
-    "main.f325c1a8.css.map": "/boolean-quiz/static/css/main.f325c1a8.css.map",
-    "main.ec4e106e.js.map": "/boolean-quiz/static/js/main.ec4e106e.js.map",
+    "main.d8a19afa.css.map": "/boolean-quiz/static/css/main.d8a19afa.css.map",
+    "main.59babff3.js.map": "/boolean-quiz/static/js/main.59babff3.js.map",
     "787.d461c582.chunk.js.map": "/boolean-quiz/static/js/787.d461c582.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f325c1a8.css",
-    "static/js/main.ec4e106e.js"
+    "static/css/main.d8a19afa.css",
+    "static/js/main.59babff3.js"
   ]
 }
