@@ -1,5 +1,5 @@
 import Formula from './formula';
-import { BinaryNode, InputMap, InputNode, NodeType, UnaryNode } from './formulaNode';
+import { BinaryNode, ConstNode, InputMap, InputNode, NodeType, UnaryNode } from './formulaNode';
 
 export interface TruthTableRow {
   inputs: InputMap;
@@ -35,7 +35,13 @@ export class TruthTable {
         });
         return new BinaryNode(NodeType.AND, inputs);
       });
-    return new Formula(new BinaryNode(NodeType.OR, children));
+    if (children.length === 0) {
+      return new Formula(new ConstNode('false'));
+    } else if (children.length === 1) {
+      return new Formula(children[0]);
+    } else {
+      return new Formula(new BinaryNode(NodeType.OR, children));
+    }
   }
 
   public static createTruthTable(formula: Formula): TruthTable {
