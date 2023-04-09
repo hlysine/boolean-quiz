@@ -28,7 +28,9 @@ export default class WriteFormulaQuestion extends Question {
       }, [truthTable, formula]);
       return (
         <div className="flex flex-col gap-1">
+          <p className="m-2">Given the follow truth table with inputs A, B & C and output:</p>
           <TruthTableView truthTable={this.truthTable} formula={formula} />
+          <p className="m-2">Write the mathematical formula.</p>
           <FormulaInput onChange={e => setFormula(e)} />
         </div>
       );
