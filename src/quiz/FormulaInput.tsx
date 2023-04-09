@@ -28,14 +28,14 @@ export default function FormulaInput({ onChange }: FormulaInputProps) {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 items-center justify-center">
       <textarea
         spellCheck={false}
         rows={1}
         placeholder="Type formula here..."
         autoFocus={true}
         onChange={e => changeHandler(e.target.value)}
-        className="resize-none rounded-md p-2 font-mono border"
+        className="resize-none rounded-md p-2 font-mono border w-full"
       ></textarea>
       {latex ? <Latex>{latex}</Latex> : null}
       {error ? <p>{error}</p> : null}
