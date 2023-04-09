@@ -8,6 +8,7 @@ export const enum NodeType {
   AND,
   NOT,
   INPUT,
+  CONST,
 }
 
 export abstract class FormulaNodeBase {
@@ -21,6 +22,35 @@ export abstract class FormulaNodeBase {
   public abstract toString(): string;
   public abstract toLatex(): string;
   public abstract clone(): FormulaNode;
+}
+
+export class ConstNode extends FormulaNodeBase {
+  public override type = NodeType.CONST as const;
+
+  public override value: 'true' | 'false';
+
+  public override children = undefined;
+
+  public constructor(value: 'true' | 'false') {
+    super();
+    this.value = value;
+  }
+
+  public override evaluate(_inputs: InputMap): boolean {
+    return this.value === 'true';
+  }
+
+  public override toString(): string {
+    return this.value;
+  }
+
+  public override toLatex(): string {
+    return this.value;
+  }
+
+  public override clone(): ConstNode {
+    return new ConstNode(this.value);
+  }
 }
 
 export class InputNode extends FormulaNodeBase {
@@ -186,4 +216,4 @@ export class UnaryNode extends FormulaNodeBase {
   }
 }
 
-export type FormulaNode = InputNode | BinaryNode | UnaryNode;
+export type FormulaNode = ConstNode | InputNode | BinaryNode | UnaryNode;

@@ -14,6 +14,14 @@ export default class Formula {
     return this.node.evaluate(inputs);
   }
 
+  public toString(): string {
+    return this.node.toString();
+  }
+
+  public toLatex(): string {
+    return `$${this.node.toLatex()}$`;
+  }
+
   public clone(): Formula {
     return new Formula(this.node.clone());
   }
@@ -21,6 +29,8 @@ export default class Formula {
   private static getInputs(node: FormulaNode): string[] {
     if (node.type === NodeType.INPUT) {
       return [node.value];
+    } else if (node.type === NodeType.CONST) {
+      return [];
     } else {
       return [...new Set(node.children.flatMap(child => this.getInputs(child)))];
     }

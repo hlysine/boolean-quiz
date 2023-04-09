@@ -1,5 +1,5 @@
 import Formula from './formula';
-import { BinaryNode, FormulaNode, InputNode, NodeType, UnaryNode } from './formulaNode';
+import { BinaryNode, ConstNode, FormulaNode, InputNode, NodeType, UnaryNode } from './formulaNode';
 
 interface LexerToken {
   text: string;
@@ -152,6 +152,8 @@ function formulaParser(tokens: LexerToken[]): Formula {
       addOperator(token.position, NodeType.AND);
     } else if (token.text.toLowerCase() === 'not') {
       addOperand(token.position, new UnaryNode(NodeType.NOT, undefined));
+    } else if (token.text.toLowerCase() === 'true' || token.text.toLowerCase() === 'false') {
+      addOperand(token.position, new ConstNode(token.text.toLowerCase() as 'true' | 'false'));
     } else if (/^[a-zA-Z_][a-zA-Z0-9_-]*$/.test(token.text)) {
       addOperand(token.position, new InputNode(token.text));
     } else {

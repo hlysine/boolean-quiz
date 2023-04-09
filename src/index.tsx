@@ -1,4 +1,6 @@
 import './index.css';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'katex/dist/katex.min.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
